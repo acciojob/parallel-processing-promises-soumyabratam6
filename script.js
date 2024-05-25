@@ -7,7 +7,6 @@ const images = [
   { url: "https://picsum.photos/id/238/200/300" },
   { url: "https://picsum.photos/id/239/200/300" },
 ];
-// Function to load an image and return a promise
 function loadImage(image) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -18,28 +17,16 @@ function loadImage(image) {
   });
 }
 
-// Function to download and display images
 function downloadAndDisplayImages() {
-  // Create an array of promises for downloading the images
   const promises = images.map(image => loadImage(image));
-
-  // Use Promise.all to download all images in parallel
   Promise.all(promises)
     .then(loadedImages => {
-      // Clear any existing images
       output.innerHTML = "";
-
-      // Display the downloaded images
       loadedImages.forEach(img => output.appendChild(img));
     })
     .catch(error => {
-      // Handle any errors
       console.error(error);
-
-      // Optionally, display the error message on the webpage
       output.innerHTML = `<p style="color: red;">${error.message}</p>`;
     });
 }
-
-// Add click event listener to the button
 btn.addEventListener("click", downloadAndDisplayImages);
