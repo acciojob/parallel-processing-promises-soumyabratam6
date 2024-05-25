@@ -35,6 +35,9 @@ function downloadAndDisplayImages() {
     .catch(error => {
       // Handle any errors
       console.error(error);
+
+      // Optionally, display the error message on the webpage
+      output.innerHTML = `<p style="color: red;">${error.message}</p>`;
     });
 }
 
